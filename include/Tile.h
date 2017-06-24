@@ -1,27 +1,20 @@
 
 #ifndef TILE_H
 #define TILE_H
-
-enum TileTypes
+class Tile
 {
-    WATER,
-    GROUND,
-    MOUNTAIN,
-    FLORA,
-    DESERT,
-    CITY,
-    ROAD
+protected:
+    SDL_Texture* tileTexture;
+    int width;
+    int height;
+    int xCoor;
+    int yCoor;
+
+public:
+    Tile(int newWidth, int newHeight, int xCoor, int yCoor);
+    int getXCoor();
+    int getYCoor();
 };
-
-int tileWidth;
-int tileHeight;
-int xCoor;
-int yCoor;
-
-getXCoor();
-getYCoor();
-changeImage();
-setTileType(int tileType);
 
 #endif // TILE_H
 

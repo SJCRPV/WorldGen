@@ -1,4 +1,4 @@
-
+#include <stdlib.h>
 #include <GenWorld.h>
 
 /*
@@ -17,41 +17,60 @@
     - Diplomacy
 */
 
-class GenWorld
+enum TileTypes
 {
-    void createWater()
-    {
+    WATER,
+    GROUND,
+    MOUNTAIN,
+    FLORA,
+    DESERT,
+    CITY,
+    ROAD
+};
 
-    }
+float GenWorld::generateRandomNumber(int min, int max)
+{
+    return rand() % max + min;
+}
 
-    void createGrid()
+void GenWorld::createGround()
+{
+
+}
+
+void GenWorld::createWater()
+{
+
+}
+
+void GenWorld::createGrid()
+{
+    grid = new Tile[numTilesWide][numTilesTall];
+    for(int i = 0; i < numTilesWide; i++)
     {
-        for(int i = 0; i < numTilesWide; i++)
+        for(int j = 0; j < numTilesTall; j++)
         {
-            for(int j = 0; j < numTilesTall; j++)
-            {
-                Tile tile = new Tile(tileWidth, tileHeight, i, j);
-                createWater(tile);
-            }
+
+            grid[i][j] =
         }
     }
+}
 
-    GenWorld(int newNumTilesWide, int newNumTilesTall, int newTileWidth, int newTileHeight)
-    {
-        numTilesWide = newNumTilesWide;
-        numTilesTall = newNumTilesTall;
-        tileWidth = newTileWidth;
-        tileHeight = newTileHeight;
-        createGrid();
-        createGround();
-        createElevation();
-        createFlora();
-        createDesert();
-        createFauna();
-        createSentientSpecies();
-        createCities();
-        createRoads();
-        createNations();
-        createDiplomacy();
-    }
-};
+GenWorld::GenWorld(int newNumTilesWide, int newNumTilesTall, int newTileWidth, int newTileHeight)
+{
+    numTilesWide = newNumTilesWide;
+    numTilesTall = newNumTilesTall;
+    tileWidth = newTileWidth;
+    tileHeight = newTileHeight;
+    createGrid();
+    createGround();
+//    createElevation();
+//    createFlora();
+//    createDesert();
+//    createFauna();
+//    createSentientSpecies();
+//    createCities();
+//    createRoads();
+//    createNations();
+//    createDiplomacy();
+}

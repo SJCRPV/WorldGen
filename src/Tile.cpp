@@ -1,24 +1,19 @@
 
 #include <Tile.h>
 
-class Tile
+int Tile::getXCoor()
 {
-public:
-    int getXCoor()
-    {
-        return xCoor;
-    }
-    int getYCoor()
-    {
-        return yCoor;
-    }
+    return xCoor;
+}
+int Tile::getYCoor()
+{
+    return yCoor;
+}
 
-private:
-    Tile(int newTileWidth, int newTileHeight, int xCoor, int yCoor)
-    {
-        tileWidth = newTileWidth;
-        tileHeight = newTileHeight;
-        this.xCoor = xCoor;
-        this.yCoor = yCoor;
-    }
-};
+Tile::Tile(SDL_Renderer ren, int newWidth, int newHeight, int newXCoor, int newYCoor)
+{
+    width = newWidth;
+    height = newHeight;
+    xCoor = newXCoor;
+    yCoor = newYCoor;
+}

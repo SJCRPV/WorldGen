@@ -1,39 +1,36 @@
 #ifndef GEN_WORLD_H
 #define GEN_WORLD_H
 
-int tileWidth;
-int tileHeight;
+#include <SDL.h>
 
-int numTilesWide;
-int numTilesTall;
-void createGrid();
+class GenWorld
+{
+private:
+    int tileWidth;
+    int tileHeight;
 
-SDL_Surface* waterTile;
-void createWater();
+    float generateRandomNumber(int min, int max);
 
-SDL_Surface* groundTile;
-void createGround();
+    int numTilesWide;
+    int numTilesTall;
+    Tile[][] grid;
 
-SDL_Surface* mountainTile;
-void createElevation();
+    //Generation
+    void createGrid();
+    void createWater();
+    void createGround();
+    void createElevation();
+    void createFlora();
+    void createDesert();
+    void createFauna();
+    void createSentientSpecies();
+    void createCities();
+    void createRoads();
+    void createNations();
+    void createDiplomacy();
 
-SDL_Surface* grassTile;
-SDL_Surface* treeTile;
-void createFlora();
-
-SDL_Surface* desertTile;
-void createDesert();
-
-void createFauna();
-void createSentientSpecies();
-
-SDL_Surface* cityTile;
-void createCities();
-
-SDL_Surface* roadTile;
-void createRoads();
-
-void createNations();
-void createDiplomacy();
+public:
+    GenWorld(int newNumTilesWide, int newNumTilesTall, int newTileWidth, int newTileHeight);
+};
 
 #endif // GEN_WORLD_H

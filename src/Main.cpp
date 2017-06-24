@@ -1,9 +1,10 @@
 /*This source code copyrighted by Lazy Foo' Productions (2004-2015)
 and may not be redistributed without written permission.*/
 
-//Using SDL and standard IO
-#include <SDL.h>
 #include <stdio.h>
+#include <SDL.h>
+#include <SDL_image.h>
+#include <GenWorld.h>
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 640;
@@ -24,37 +25,45 @@ SDL_Window* gWindow = NULL;
 //The surface contained by the window
 SDL_Surface* gScreenSurface = NULL;
 
-//The image we will load and show on the screen
-SDL_Surface* gHelloWorld = NULL;
+GenWorld * worldGen = NULL;
 
 bool init()
 {
-	//Initialization flag
-	bool success = true;
+    //Initialization flag
+    bool success = true;
 
-	//Initialize SDL
-	if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
-	{
-		printf( "SDL could not initialize! SDL_Error: %s\n", SDL_GetError() );
-		success = false;
-	}
-	else
-	{
-		//Create window
-		gWindow = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
-		if( gWindow == NULL )
-		{
-			printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError() );
-			success = false;
-		}
-		else
-		{
-			//Get window surface
-			gScreenSurface = SDL_GetWindowSurface( gWindow );
-		}
-	}
-
-	return success;
+    //Initialize SDL
+    if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
+    {
+        printf( "SDL could not initialize! SDL Error: %s\n", SDL_GetError() );
+        success = false;
+    }
+    else
+    {
+        //Create window
+        gWindow = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+        if( gWindow == NULL )
+        {
+            printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
+            success = false;
+        }
+        else
+        {
+            //Initialize PNG loading
+            int imgFlags = IMG_INIT_PNG;
+            if( !( IMG_Init( imgFlags ) & imgFlags ) )
+            {
+                printf( "SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError() );
+                success = false;
+            }
+            else
+            {
+                //Get window surface
+                gScreenSurface = SDL_GetWindowSurface( gWindow );
+            }
+        }
+    }
+    return success;
 }
 
 bool loadMedia()
@@ -62,13 +71,7 @@ bool loadMedia()
 	//Loading success flag
 	bool success = true;
 
-	//Load splash image
-	gHelloWorld = SDL_LoadBMP( "hello_world.bmp" );
-	if( gHelloWorld == NULL )
-	{
-		printf( "Unable to load image %s! SDL Error: %s\n", "hello_world.bmp", SDL_GetError() );
-		success = false;
-	}
+
 
 	return success;
 }
@@ -96,23 +99,34 @@ int main( int argc, char* args[] )
 	}
 	else
 	{
-		//Load media
-		if( !loadMedia() )
-		{
-			printf( "Failed to load media!\n" );
-		}
-		else
-		{
+	    bool quit = false;
+	    SDL_Event e;
+	    while(!quit)
+        {
+            while(SDL_PollEvent(&e))
+            {
+                //Load media
+                if( !loadMedia() )
+                {
+                    printf( "Failed to load media!\n" );
+                }
+                else
+                {
+                    //Apply the image
+                    //SDL_BlitSurface( gHelloWorld, NULL, gScreenSurface, NULL );
 
-			//Apply the image
-			SDL_BlitSurface( gHelloWorld, NULL, gScreenSurface, NULL );
+                    GenWorld * worldGen = new GenWorld(10, 10, 1, 1);
 
-			//Update the surface
-			SDL_UpdateWindowSurface( gWindow );
+                    //Update the surface
+                    SDL_UpdateWindowSurface( gWindow );
+                }
 
-			//Wait two seconds
-			SDL_Delay( 2000 );
-		}
+                if(e.type == SDL_KEYDOWN)
+                {
+                    quit = true;
+                }
+            }
+        }
 	}
 
 	//Free resources and close SDL

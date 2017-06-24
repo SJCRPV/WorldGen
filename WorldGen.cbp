@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -22,6 +23,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -31,16 +33,19 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add directory="C:/SDL2/SDL2-2.0.5/i686-w64-mingw32/include/SDL2" />
+			<Add directory="include" />
 		</Compiler>
 		<Linker>
-			<Add option="-lmingw32 -lSDL2main -lSDL2" />
+			<Add option="-lmingw32 -lSDL2main -lSDL2 -lSDL2_image" />
 			<Add directory="C:/SDL2/SDL2-2.0.5/i686-w64-mingw32/lib" />
 		</Linker>
 		<Unit filename="include/GenWorld.h" />
 		<Unit filename="include/Tile.h" />
+		<Unit filename="include/WaterTile.h" />
 		<Unit filename="src/GenWorld.cpp" />
 		<Unit filename="src/Main.cpp" />
 		<Unit filename="src/Tile.cpp" />
+		<Unit filename="src/WaterTile.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
