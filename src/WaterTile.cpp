@@ -1,8 +1,10 @@
 #include "WaterTile.h"
 
-WaterTile::WaterTile()
+WaterTile::WaterTile(int newXCoor, int newYCoor)
 {
-    //ctor
+    fileDir = "../img/WaterTile.png";
+    xCoor = newXCoor;
+    yCoor = newYCoor;
 }
 
 WaterTile::~WaterTile()

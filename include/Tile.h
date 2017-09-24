@@ -1,20 +1,24 @@
-
 #ifndef TILE_H
 #define TILE_H
+
+#include <SDL.h>
+#include <SDL_image.h>
+#include <string>
+
 class Tile
 {
 protected:
-    SDL_Texture* tileTexture;
-    int width;
-    int height;
+    static const int width = 32;
+    static const int height = 32;
     int xCoor;
     int yCoor;
+    std::string fileDir;
 
 public:
-    Tile(int newWidth, int newHeight, int xCoor, int yCoor);
+    Tile();
     int getXCoor();
     int getYCoor();
+    virtual SDL_Texture* loadTile(SDL_Renderer* ren) { return NULL; };
 };
 
 #endif // TILE_H
-

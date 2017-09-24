@@ -12,7 +12,9 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-std=c++11" />
 					<Add option="-g" />
+					<Add directory="C:/Users/SJCRPV/Documents/GitHub/WorldGen/include" />
 					<Add directory="include" />
 				</Compiler>
 			</Target>
@@ -23,6 +25,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="C:/Users/SJCRPV/Documents/GitHub/WorldGen/include" />
 					<Add directory="include" />
 				</Compiler>
 				<Linker>
@@ -33,16 +36,26 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add directory="C:/SDL2/SDL2-2.0.5/i686-w64-mingw32/include/SDL2" />
-			<Add directory="include" />
+			<Add directory="C:/Users/SJCRPV/Documents/GitHub/WorldGen/include" />
+			<Add directory="C:/SDL2/SDL2-2.0.5/x86_64-w64-mingw32/include/SDL2" />
 		</Compiler>
 		<Linker>
 			<Add option="-lmingw32 -lSDL2main -lSDL2 -lSDL2_image" />
 			<Add directory="C:/SDL2/SDL2-2.0.5/i686-w64-mingw32/lib" />
+			<Add directory="C:/SDL2/SDL2-2.0.5/x86_64-w64-mingw32/lib" />
 		</Linker>
 		<Unit filename="include/GenWorld.h" />
+		<Unit filename="include/Generation.h" />
+		<Unit filename="include/GeneratorTypes.h" />
+		<Unit filename="include/GenericTile.h" />
+		<Unit filename="include/GroundGen.h" />
 		<Unit filename="include/Tile.h" />
+		<Unit filename="include/TileTypes.h" />
 		<Unit filename="include/WaterTile.h" />
 		<Unit filename="src/GenWorld.cpp" />
+		<Unit filename="src/Generation.cpp" />
+		<Unit filename="src/GenericTile.cpp" />
+		<Unit filename="src/GroundGen.cpp" />
 		<Unit filename="src/Main.cpp" />
 		<Unit filename="src/Tile.cpp" />
 		<Unit filename="src/WaterTile.cpp" />

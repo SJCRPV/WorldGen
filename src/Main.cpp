@@ -1,6 +1,3 @@
-/*This source code copyrighted by Lazy Foo' Productions (2004-2015)
-and may not be redistributed without written permission.*/
-
 #include <stdio.h>
 #include <SDL.h>
 #include <SDL_image.h>
@@ -10,20 +7,23 @@ and may not be redistributed without written permission.*/
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
-//Starts up SDL and creates window
-bool init();
-
-//Loads media
-bool loadMedia();
-
-//Frees media and shuts down SDL
-void close();
+////Starts up SDL and creates window
+//bool init();
+//
+////Loads media
+//bool loadMedia();
+//
+////Frees media and shuts down SDL
+//void close();
 
 //The window we'll be rendering to
 SDL_Window* gWindow = NULL;
 
 //The surface contained by the window
 SDL_Surface* gScreenSurface = NULL;
+
+//The renderer that paints the surface
+SDL_Renderer* ren = NULL;
 
 GenWorld * worldGen = NULL;
 
@@ -58,8 +58,14 @@ bool init()
             }
             else
             {
+                ren = SDL_CreateRenderer(gWindow, -1, 0);
+
                 //Get window surface
                 gScreenSurface = SDL_GetWindowSurface( gWindow );
+
+                //Initialize the worldGen instance
+                GenWorld * worldGen = new GenWorld(ren, 10, 10, 1, 1);
+                worldGen->generateWorld();
             }
         }
     }
@@ -79,12 +85,14 @@ bool loadMedia()
 void close()
 {
 	//Deallocate surface
-	SDL_FreeSurface( gHelloWorld );
-	gHelloWorld = NULL;
+	SDL_FreeSurface( gScreenSurface );
+	gScreenSurface = NULL;
 
 	//Destroy window
 	SDL_DestroyWindow( gWindow );
 	gWindow = NULL;
+
+	IMG_Quit();
 
 	//Quit SDL subsystems
 	SDL_Quit();
@@ -115,7 +123,7 @@ int main( int argc, char* args[] )
                     //Apply the image
                     //SDL_BlitSurface( gHelloWorld, NULL, gScreenSurface, NULL );
 
-                    GenWorld * worldGen = new GenWorld(10, 10, 1, 1);
+
 
                     //Update the surface
                     SDL_UpdateWindowSurface( gWindow );

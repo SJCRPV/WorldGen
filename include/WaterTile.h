@@ -7,7 +7,7 @@
 class WaterTile : public Tile
 {
     public:
-        WaterTile();
+        WaterTile(int newXCoor, int newYCoor);
         virtual ~WaterTile();
 
     protected:

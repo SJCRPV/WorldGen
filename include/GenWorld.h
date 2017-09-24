@@ -2,26 +2,24 @@
 #define GEN_WORLD_H
 
 #include <SDL.h>
+#include <Generation.h>
 
-class GenWorld
+class GenWorld : public Generation
 {
 private:
     int tileWidth;
     int tileHeight;
 
-    float generateRandomNumber(int min, int max);
-
     int numTilesWide;
     int numTilesTall;
-    Tile[][] grid;
 
     //Generation
     void createGrid();
-    void createWater();
     void createGround();
+    void createWater();
     void createElevation();
+    void createClimate();
     void createFlora();
-    void createDesert();
     void createFauna();
     void createSentientSpecies();
     void createCities();
@@ -30,7 +28,8 @@ private:
     void createDiplomacy();
 
 public:
-    GenWorld(int newNumTilesWide, int newNumTilesTall, int newTileWidth, int newTileHeight);
+    void generateWorld();
+    GenWorld(SDL_Renderer *ren, int newNumTilesWide, int newNumTilesTall, int newTileWidth, int newTileHeight);
 };
 
 #endif // GEN_WORLD_H

@@ -1,16 +1,14 @@
-#include <stdlib.h>
 #include <GenWorld.h>
 
 /*
     Generation order:
     - Grid
-    - Water
     - Ground
-    - Elevation
+    - Water
+    - Climate
     - Flora
-    - Desert
     - Fauna
-    - Sentients
+    - Sentience
     - Cities
     - Roads
     - Nations
@@ -19,6 +17,7 @@
 
 enum TileTypes
 {
+    GENERIC,
     WATER,
     GROUND,
     MOUNTAIN,
@@ -28,9 +27,10 @@ enum TileTypes
     ROAD
 };
 
-float GenWorld::generateRandomNumber(int min, int max)
+
+
+void GenWorld::createWater()
 {
-    return rand() % max + min;
 }
 
 void GenWorld::createGround()
@@ -38,32 +38,26 @@ void GenWorld::createGround()
 
 }
 
-void GenWorld::createWater()
-{
-
-}
-
 void GenWorld::createGrid()
 {
-    grid = new Tile[numTilesWide][numTilesTall];
-    for(int i = 0; i < numTilesWide; i++)
+    for(int i = 0; i < numTilesTall; i++)
     {
-        for(int j = 0; j < numTilesTall; j++)
+        grid.push_back(row);
+        for(int j = 0; j < numTilesWide; j++)
         {
-
-            grid[i][j] =
+            tile = new GenericTile(i, j);
+            grid[i].push_back(tile);
+            tile->loadTile(ren);
+            renderTitle(grid[i][j]);
         }
     }
 }
 
-GenWorld::GenWorld(int newNumTilesWide, int newNumTilesTall, int newTileWidth, int newTileHeight)
+void GenWorld::generateWorld()
 {
-    numTilesWide = newNumTilesWide;
-    numTilesTall = newNumTilesTall;
-    tileWidth = newTileWidth;
-    tileHeight = newTileHeight;
     createGrid();
-    createGround();
+//    createGround();
+//    createWater();
 //    createElevation();
 //    createFlora();
 //    createDesert();
@@ -73,4 +67,13 @@ GenWorld::GenWorld(int newNumTilesWide, int newNumTilesTall, int newTileWidth, i
 //    createRoads();
 //    createNations();
 //    createDiplomacy();
+}
+
+GenWorld::GenWorld(SDL_Renderer *ren, int newNumTilesWide, int newNumTilesTall, int newTileWidth, int newTileHeight)
+{
+    numTilesWide = newNumTilesWide;
+    numTilesTall = newNumTilesTall;
+    tileWidth = newTileWidth;
+    tileHeight = newTileHeight;
+    Tile* tile = new Tile();
 }
