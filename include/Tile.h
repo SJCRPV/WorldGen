@@ -1,8 +1,6 @@
 #ifndef TILE_H
 #define TILE_H
 
-#include <SDL.h>
-#include <SDL_image.h>
 #include <string>
 
 class Tile
@@ -18,7 +16,7 @@ public:
     Tile();
     int getXCoor();
     int getYCoor();
-    virtual SDL_Texture* loadTile(SDL_Renderer* ren) { return NULL; };
+    //virtual SDL_Texture* loadTile(SDL_Renderer* ren) { return NULL; };
 };
 
 #endif // TILE_H

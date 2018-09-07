@@ -1,5 +1,5 @@
-#include <Generation.h>
-
+//#include <Generation.h>
+/*
 float Generation::generateRandomNumber(int min, int max)
 {
     return rand() % max + min;
@@ -14,3 +14,4 @@ Generation::~Generation()
 {
     //dtor
 }
+*/

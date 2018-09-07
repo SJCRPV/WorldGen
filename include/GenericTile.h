@@ -9,7 +9,7 @@ class GenericTile : public Tile
     public:
         GenericTile(int newXCoor, int newYCoor);
         virtual ~GenericTile();
-        SDL_Texture* loadTile(SDL_Renderer* ren);
+        //SDL_Texture* loadTile(SDL_Renderer* ren);
 
     protected:
 

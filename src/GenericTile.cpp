@@ -1,6 +1,6 @@
-#include "GenericTile.h"
+//#include "GenericTile.h"
 
-SDL_Texture* GenericTile::loadTile(SDL_Renderer* ren)
+/*SDL_Texture* GenericTile::loadTile(SDL_Renderer* ren)
 {
     SDL_Texture *tileTexture = IMG_LoadTexture(ren, fileDir.c_str());
     if(tileTexture == nullptr)
@@ -21,3 +21,4 @@ GenericTile::~GenericTile()
 {
     //dtor
 }
+*/

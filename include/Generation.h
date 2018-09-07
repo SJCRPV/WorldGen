@@ -18,7 +18,7 @@ class Generation
     protected:
         Row row;
         Matrix grid;
-        SDL_Renderer* ren;
+        //SDL_Renderer* ren;
         Tile* tile;
         float generateRandomNumber(int min, int max);
     private:

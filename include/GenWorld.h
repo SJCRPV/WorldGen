@@ -1,7 +1,6 @@
 #ifndef GEN_WORLD_H
 #define GEN_WORLD_H
 
-#include <SDL.h>
 #include <Generation.h>
 
 class GenWorld : public Generation
@@ -29,7 +28,7 @@ private:
 
 public:
     void generateWorld();
-    GenWorld(SDL_Renderer *ren, int newNumTilesWide, int newNumTilesTall, int newTileWidth, int newTileHeight);
+    //GenWorld(SDL_Renderer *ren, int newNumTilesWide, int newNumTilesTall, int newTileWidth, int newTileHeight);
 };
 
 #endif // GEN_WORLD_H
