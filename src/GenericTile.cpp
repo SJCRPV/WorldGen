@@ -1,24 +1,20 @@
-//#include "GenericTile.h"
-
-/*SDL_Texture* GenericTile::loadTile(SDL_Renderer* ren)
-{
-    SDL_Texture *tileTexture = IMG_LoadTexture(ren, fileDir.c_str());
-    if(tileTexture == nullptr)
-    {
-        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "LoadTile");
-    }
-    return tileTexture;
-}
+#include "../include/GenericTile.h"
 
 GenericTile::GenericTile(int newXCoor, int newYCoor) : Tile()
 {
     fileDir = "img/GenericTile.png";
-    xCoor = newXCoor;
-    yCoor = newYCoor;
+	quad = *new sf::VertexArray(sf::Quads, 4);
+	setWindowPosition(newXCoor, newYCoor);
+	setTextureArea();
+	loadTexture();
 }
 
 GenericTile::~GenericTile()
 {
     //dtor
+	delete &texture;
+	delete &quad;
+	delete &position;
+	delete &fileDir;
 }
-*/
+

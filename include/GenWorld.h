@@ -1,7 +1,7 @@
 #ifndef GEN_WORLD_H
 #define GEN_WORLD_H
 
-#include <Generation.h>
+#include "Generation.h"
 
 class GenWorld : public Generation
 {
@@ -27,8 +27,9 @@ private:
     void createDiplomacy();
 
 public:
+	Matrix getGrid();
     void generateWorld();
-    //GenWorld(SDL_Renderer *ren, int newNumTilesWide, int newNumTilesTall, int newTileWidth, int newTileHeight);
+	GenWorld(int nNumTilesWide, int nNumTilesTall, int nTileWidth, int nTileHeight);
 };
 
 #endif // GEN_WORLD_H

@@ -1,18 +1,28 @@
 #include <SFML\Graphics.hpp>
-//#include <GenWorld.h>
+#include "../include/GenWorld.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
-//GenWorld * worldGen = NULL;
+GenWorld* worldGen = NULL;
 
-bool init()
+void close()
 {
-    //Initialization flag
-    bool success = true;
 
-    return success;
+}
+
+void drawGrid(sf::RenderWindow& window)
+{
+	Matrix grid = worldGen->getGrid();
+	for (int i = 0; i < grid.size(); i++)
+	{
+		Row gridRow = grid[i];
+		for (int j = 0; j < gridRow.size(); j++)
+		{
+			grid[i][j].draw(window, sf::RenderStates());
+		}
+	}
 }
 
 bool loadMedia()
@@ -25,9 +35,13 @@ bool loadMedia()
 	return success;
 }
 
-void close()
+bool init()
 {
-
+	//Initialization flag
+	bool success = true;
+	worldGen = new GenWorld(16, 16, 32, 32);
+	worldGen->generateWorld();
+	return success;
 }
 
 int main( int argc, char* args[] )
@@ -36,8 +50,6 @@ int main( int argc, char* args[] )
 	init();
 
     sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "SFML Works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
 
 	while(window.isOpen())
     {
@@ -50,7 +62,7 @@ int main( int argc, char* args[] )
             }
 
             window.clear();
-            window.draw(shape);
+			drawGrid(window);
             window.display();
         }
     }
